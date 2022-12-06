@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             withdrawAmount.text="Ksh ${mpesaData.sumTotals[4]}"
             paidAmount.text="Ksh ${mpesaData.sumTotals[3]}"
             airtimeAmount.text="Ksh ${mpesaData.sumTotals[1]}"
-            balanceChecks.text="Ksh ${mpesaData.sumTotals[5]}"
+            balanceChecks.text="${mpesaData.sumTotals[5]}"
             var csvSt=mpesaData.sumTotals.joinToString(",")
             csvSt=csvSt+",${mpesaData.smsData.size}\n"
             mpesaData.smsData.forEach {
