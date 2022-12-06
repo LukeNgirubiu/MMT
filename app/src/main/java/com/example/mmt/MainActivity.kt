@@ -107,9 +107,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (checkPermissions()==false){
+            mainMenu.visibility=View.GONE
             requestPermission()
         }
         if (checkPermissions()==true){
+            mainMenu.visibility=View.VISIBLE
             prepareData()
             if (allTexts.size>0){
                 noText.visibility=View.GONE
