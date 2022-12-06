@@ -71,7 +71,7 @@
                  android:layout_height="wrap_content"
                  android:layout_centerHorizontal="true"
                  android:layout_marginTop="10dp"
-                 android:text="Ksh 200"
+                 android:text="N/A"
                  android:textColor="@color/white"
                  android:textStyle="bold" />
              <TextView
@@ -110,11 +110,11 @@
                  style="@style/TextAppearance.MaterialComponents.Headline6"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
                  android:layout_marginTop="10dp"
-                 android:text="Ksh 200"
+                 android:text="N/A"
                  android:textColor="@color/white"
-                 android:textStyle="bold"
-                 android:layout_centerHorizontal="true"/>
+                 android:textStyle="bold" />
              <TextView
                  android:id="@+id/sentLabel"
                  android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
                  android:layout_height="wrap_content"
                  android:layout_centerHorizontal="true"
                  android:layout_marginTop="10dp"
-                 android:text="Ksh 200"
+                 android:text="N/A"
                  android:textColor="@color/white"
                  android:textStyle="bold" />
              <TextView
@@ -194,7 +194,7 @@
                  android:layout_height="wrap_content"
                  android:layout_centerHorizontal="true"
                  android:layout_marginTop="10dp"
-                 android:text="Ksh 200"
+                 android:text="N/A"
                  android:textColor="@color/white"
                  android:textStyle="bold" />
              <TextView
@@ -235,7 +235,7 @@
                  android:layout_height="wrap_content"
                  android:layout_centerHorizontal="true"
                  android:layout_marginTop="10dp"
-                 android:text="Ksh 200"
+                 android:text="N/A"
                  android:textColor="@color/white"
                  android:textStyle="bold" />
 
@@ -276,7 +276,7 @@
                  android:layout_height="wrap_content"
                  android:layout_centerHorizontal="true"
                  android:layout_marginTop="10dp"
-                 android:text="6"
+                 android:text="N/A"
                  android:textColor="@color/white"
                  android:textStyle="bold" />
 
