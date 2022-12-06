@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:weightSum="10"
+    android:background="@color/home_bg"
+    android:orientation="vertical">
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:layout_width="match_parent"
+     android:layout_height="0dp"
+     android:layout_weight="5"
+     >
+     <androidx.appcompat.widget.Toolbar
+         android:id="@+id/tool_bar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         app:layout_constraintTop_toTopOf="parent"
+         android:background="@color/app_color"
+         android:paddingBottom="10dp"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="0dp"
+             android:layout_marginRight="10dp"
+             >
+             <TextView
+                 style="@style/TextAppearance.MaterialComponents.Headline5"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_marginLeft="30dp"
+                 android:text="M.M.T"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+
+             <ImageButton
+                 android:id="@+id/main_menu"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="7dp"
+                 android:background="@color/app_color"
+                 android:src="@drawable/main_menu" />
+         </RelativeLayout>
+     </androidx.appcompat.widget.Toolbar>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/recieved"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintWidth_percent="0.46"
+         app:layout_constraintHeight_percent="0.23"
+         app:layout_constraintTop_toBottomOf="@id/tool_bar"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:cardCornerRadius="10dp"
+         android:layout_marginTop="7dp"
+         android:layout_marginLeft="10dp"
+         app:cardBackgroundColor="@color/blue_1"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/recievedAmount"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="10dp"
+                 android:text="Ksh 200"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+             <TextView
+                 android:id="@+id/recievedLabel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:textColor="@color/white"
+                 android:textStyle="bold"
+                 android:text="Recieved"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="7dp"
+                 android:layout_below="@+id/recievedAmount"
+                 />
+         </RelativeLayout>
+     </androidx.cardview.widget.CardView>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/sent"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintWidth_percent="0.46"
+         app:layout_constraintHeight_percent="0.23"
+         app:layout_constraintTop_toBottomOf="@id/tool_bar"
+         app:layout_constraintRight_toRightOf="parent"
+         app:cardCornerRadius="10dp"
+         android:layout_marginTop="7dp"
+         android:layout_marginRight="10dp"
+         app:cardBackgroundColor="@color/green_2"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/sentAmount"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:text="Ksh 200"
+                 android:textColor="@color/white"
+                 android:textStyle="bold"
+                 android:layout_centerHorizontal="true"/>
+             <TextView
+                 android:id="@+id/sentLabel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:textColor="@color/white"
+                 android:textStyle="bold"
+                 android:text="Sent"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="7dp"
+                 android:layout_below="@+id/sentAmount"
+                 />
+         </RelativeLayout>
+     </androidx.cardview.widget.CardView>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/withdraw"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintWidth_percent="0.46"
+         app:layout_constraintHeight_percent="0.23"
+         app:layout_constraintTop_toBottomOf="@id/recieved"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:cardCornerRadius="10dp"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         app:cardBackgroundColor="@color/green_1"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/withdrawAmount"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="10dp"
+                 android:text="Ksh 200"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+             <TextView
+                 android:id="@+id/withdrawLabel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:textColor="@color/white"
+                 android:textStyle="bold"
+                 android:text="Withdrawals"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="7dp"
+                 android:layout_below="@+id/withdrawAmount"
+                 />
+         </RelativeLayout>
+     </androidx.cardview.widget.CardView>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/paid"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintWidth_percent="0.46"
+         app:layout_constraintHeight_percent="0.23"
+         app:layout_constraintTop_toBottomOf="@id/sent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:cardCornerRadius="10dp"
+         android:layout_marginTop="7dp"
+         android:layout_marginRight="10dp"
+         app:cardBackgroundColor="@color/app_color"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/paidAmount"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="10dp"
+                 android:text="Ksh 200"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+             <TextView
+                 android:id="@+id/paidLabel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:textColor="@color/white"
+                 android:textStyle="bold"
+                 android:text="Paid"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="7dp"
+                 android:layout_below="@+id/paidAmount"
+                 />
+         </RelativeLayout>
+     </androidx.cardview.widget.CardView>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/airTime"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintWidth_percent="0.46"
+         app:layout_constraintHeight_percent="0.23"
+         app:layout_constraintTop_toBottomOf="@id/withdraw"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:cardCornerRadius="10dp"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         app:cardBackgroundColor="@color/green_3"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/airtimeAmount"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="10dp"
+                 android:text="Ksh 200"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+
+             <TextView
+                 android:id="@+id/airtimeLabel"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/airtimeAmount"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="7dp"
+                 android:text="Airtime"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+         </RelativeLayout>
+     </androidx.cardview.widget.CardView>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/balance"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintWidth_percent="0.46"
+         app:layout_constraintHeight_percent="0.23"
+         app:layout_constraintTop_toBottomOf="@id/paid"
+         app:layout_constraintRight_toRightOf="parent"
+         app:cardCornerRadius="10dp"
+         android:layout_marginTop="10dp"
+         android:layout_marginRight="10dp"
+         app:cardBackgroundColor="@color/green_4"
+         >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/balanceChecks"
+                 style="@style/TextAppearance.MaterialComponents.Headline5"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="10dp"
+                 android:text="6"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+
+             <TextView
+                 android:id="@+id/balanceLabel"
+                 style="@style/TextAppearance.MaterialComponents.Headline6"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/balanceChecks"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="7dp"
+                 android:text="Balance Checks"
+                 android:textColor="@color/white"
+                 android:textStyle="bold" />
+         </RelativeLayout>
+     </androidx.cardview.widget.CardView>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    app:layout_constraintTop_toBottomOf="@+id/balance"
+    >
+
+    <TextView
+        android:id="@+id/transac"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:text="Last Five Transactions"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+</RelativeLayout>
+ </androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:padding="4dp"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/noText"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No data is available" />
+
+    </RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

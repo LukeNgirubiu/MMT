@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+ >
+    <item
+        android:id="@+id/see_csv"
+        android:title="View with ..."
+        />
+    <item
+        android:id="@+id/share_csv"
+        android:title="Share csv"
+        />
+    <item
+        android:id="@+id/share_excel"
+        android:title="Share excel"
+        />
+</menu>

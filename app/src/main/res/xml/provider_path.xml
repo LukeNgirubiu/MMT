@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This get you a file within the app directory
+https://developer.android.com/training/secure-file-sharing/setup-sharing
+-->
+<paths>
+<files-path path="./" name="./" />
+</paths>
