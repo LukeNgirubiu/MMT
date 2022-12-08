@@ -21,6 +21,26 @@ import java.util.*
 
 
 class mpesaUtils(val context: Context) {
+    fun smsesUtil(): Smses{
+        //ArrayList<Texts>
+        val smses=ArrayList<Texts>()
+        var count=0
+        val uri= Uri.parse("content://sms/inbox")
+        val cursor: Cursor? = context.getContentResolver().query(uri, null, null, null, null)
+        while (cursor!!.moveToNext()){
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val netDate = Date(cursor.getString(cursor.getColumnIndexOrThrow("date_sent")).toLong())
+            val txt=Texts(id =cursor.getLongOrNull(cursor.getColumnIndexOrThrow("_id")),
+                address =cursor.getString(cursor.getColumnIndexOrThrow("address")), text = cursor.getString(cursor.getColumnIndexOrThrow("body")),
+                dateRecieved = sdf.format(netDate)
+            )
+            println("Text ${cursor.getString(cursor.getColumnIndexOrThrow("body"))}")
+            smses.add(txt)
+            count=count+1
+        }
+        println("Count ${smses.size}")
+        return Smses(count,smses)
+    }
     fun dataUtil(ls:ArrayList<Texts>):Mpesa{
         var excelData:ArrayList<Excel> = ArrayList()
         var sentCash=0.0
@@ -103,6 +123,7 @@ class mpesaUtils(val context: Context) {
                 excelData.add(Excel(tranId,it.dateRecieved!!.trim(),transactionType,details,fAmount))
             }
         }
+        println("Count excel data ${excelData.size}")
         return Mpesa(excelData, arrayOf(sentCash,airTimeCash,receivedCash,paidCash,withdrawnCash,balanceCheck))
     }
     fun prepExcel(excelData:ArrayList<Excel>,path:String){
@@ -141,24 +162,6 @@ class mpesaUtils(val context: Context) {
         share.putExtra(Intent.EXTRA_STREAM, uriFile)
         share.setType("*/*")
         context.startActivity(share)
-    }
-    fun smsesUtil(): Smses{
-        //ArrayList<Texts>
-        val smses=ArrayList<Texts>()
-        var count=0
-        val uri= Uri.parse("content://sms/inbox")
-        val cursor: Cursor? = context.getContentResolver().query(uri, null, null, null, null)
-        while (cursor!!.moveToNext()){
-            val sdf = SimpleDateFormat("dd/MM/yyyy")
-            val netDate = Date(cursor.getString(cursor.getColumnIndexOrThrow("date_sent")).toLong())
-            val txt=Texts(id =cursor.getLongOrNull(cursor.getColumnIndexOrThrow("_id")),
-                address =cursor.getString(cursor.getColumnIndexOrThrow("address")), text = cursor.getString(cursor.getColumnIndexOrThrow("body")),
-                dateRecieved = sdf.format(netDate)
-            )
-            smses.add(txt)
-            count=count+1
-        }
-        return Smses(count,smses)
     }
     fun createCsv(csvData:ArrayList<Excel>,path:String){
         var str_Csv=""

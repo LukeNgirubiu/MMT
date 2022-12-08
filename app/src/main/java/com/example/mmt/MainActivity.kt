@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
       private lateinit var mpesaData:Mpesa
       private lateinit var sharedPreferences: SharedPreferences
       private lateinit var mpesaUt:mpesaUtils
-      private lateinit var allTexts:List<String>
+      private var allTexts:List<String> = listOf()
       private lateinit var recycleView:RecyclerView
       private lateinit var noText:TextView
       private lateinit var transactAdapter: Transactions
@@ -75,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         airTimeCash=findViewById(R.id.airTime)
         sharedPreferences=getSharedPreferences("App", Context.MODE_PRIVATE)
         mpesaUt= mpesaUtils(this)
+
         mainMenu.setOnClickListener {
             popUpMenu()
         }
@@ -110,10 +112,12 @@ class MainActivity : AppCompatActivity() {
             mainMenu.visibility=View.GONE
             requestPermission()
         }
-        if (checkPermissions()==true){
+        if (checkPermissions()==true&&allTexts!=null){
             mainMenu.visibility=View.VISIBLE
             prepareData()
+            println("Here ${allTexts}")
             if (allTexts.size>0){
+                println("All texts ${allTexts}")
                 noText.visibility=View.GONE
                 recycleView.visibility=View.VISIBLE
                 transactAdapter=Transactions(ArrayList(allTexts.subList(1,6)),this)
@@ -126,27 +130,36 @@ class MainActivity : AppCompatActivity() {
         val started=sharedPreferences.getBoolean("Started",false)
         if (started==false){
             mpesaData=mpesaUt.dataUtil(mpesaUt.smsesUtil().mpesaSmses)
-            recievedAmount.text="Ksh ${mpesaData.sumTotals[2]}"
-            sentAmount.text="Ksh ${mpesaData.sumTotals[0]}"
-            withdrawAmount.text="Ksh ${mpesaData.sumTotals[4]}"
-            paidAmount.text="Ksh ${mpesaData.sumTotals[3]}"
-            airtimeAmount.text="Ksh ${mpesaData.sumTotals[1]}"
-            balanceChecks.text="${mpesaData.sumTotals[5]}"
-            var csvSt=mpesaData.sumTotals.joinToString(",")
-            csvSt=csvSt+",${mpesaData.smsData.size}\n"
-            mpesaData.smsData.forEach {
-                csvSt=csvSt+"${it.tranId},${it.dateRecieved!!.trim()},${it.transactionType},${it.details},${it.Amount} \n"
+            if(mpesaData.smsData.size>0){
+                recievedAmount.text="Ksh ${mpesaData.sumTotals[2]}"
+                sentAmount.text="Ksh ${mpesaData.sumTotals[0]}"
+                withdrawAmount.text="Ksh ${mpesaData.sumTotals[4]}"
+                paidAmount.text="Ksh ${mpesaData.sumTotals[3]}"
+                airtimeAmount.text="Ksh ${mpesaData.sumTotals[1]}"
+                balanceChecks.text="${mpesaData.sumTotals[5]}"
+                var csvSt=mpesaData.sumTotals.joinToString(",")
+                csvSt=csvSt+",${mpesaData.smsData.size}\n"
+                mpesaData.smsData.forEach {
+                    csvSt=csvSt+"${it.tranId},${it.dateRecieved!!.trim()},${it.transactionType},${it.details},${it.Amount} \n"
+                }
+                allTexts=csvSt.split("\n")
+                val absoluteP=filesDir.absolutePath+"/${Project.fileStore}"
+                val fw = FileWriter(absoluteP)
+                fw.write(csvSt)
+                fw.close()
+                sharedPreferences.edit().putBoolean("Started",true).commit()
             }
-            allTexts=csvSt.split("\n")
-            val absoluteP=filesDir.absolutePath+"/${Project.fileStore}"
-            val fw = FileWriter(absoluteP)
-            fw.write(csvSt)
-            fw.close()
-            sharedPreferences.edit().putBoolean("Started",true).commit()
+            if(mpesaData.smsData.size==0){
+                val dialog=Dialogs(this)
+                val alert=dialog.waitingDialog("MMT","Data not available")
+                Handler().postDelayed({
+                    alert.cancel()
+                },2000)
+            }
         }
         if(started==true){
             var getCsv=""
-            this.openFileInput(Project.fileStore).use { stream ->
+            openFileInput(Project.fileStore).use { stream ->
                 getCsv = stream.bufferedReader().use {
                     it.readText()
                 }
@@ -195,7 +208,7 @@ class MainActivity : AppCompatActivity() {
                 val formerColums=dataLs.subList(1,dataLs.lastIndex+1).joinToString("\n")
                 val allData=firstColumn+additionStr+formerColums
                 deleteFile(Project.fileStore)
-                this.openFileOutput(Project.fileStore, Context.MODE_PRIVATE).use { output ->
+                openFileOutput(Project.fileStore, Context.MODE_PRIVATE).use { output ->
                     output.write(allData.toByteArray())
                     output.close()
                 }
