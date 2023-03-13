@@ -1,4 +1,4 @@
-###MMT
+### MMT
 MMT is a mobile application that **extract Mpesa transactions from text messages**, gives totals on every category of transactions,
  provides the most recent transactions both generally and for each category of transactions, **create csv and xlsx** for viewing and sharing. 
  The sharable file is available On both xlsx and csv formats. 
