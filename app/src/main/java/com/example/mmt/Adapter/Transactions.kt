@@ -20,7 +20,6 @@ class Transactions(internal val items:ArrayList<String>,internal val context:Con
         holder.transactionType.text=item[2].trim()
         holder.Details.text=item[3].trim()
         holder.amount.text="Ksh. "+item[4].trim()
-
     }
 
     override fun getItemCount(): Int {

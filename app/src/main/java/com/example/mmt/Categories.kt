@@ -5,17 +5,24 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mmt.Adapter.Transactions
 import com.example.mmt.Const.Project
 import com.example.mmt.Utils.Dialogs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Categories : AppCompatActivity() {
     private lateinit var searchView:SearchView
     private  lateinit var recyclerView: RecyclerView
     private lateinit var txtNoData:TextView
+    private var initialSearch=""
+    private var newSearch=""
     private var categoryId=0
     private lateinit var transactAdapter: Transactions
     private var allTrans:ArrayList<String> = ArrayList()
@@ -45,10 +52,7 @@ class Categories : AppCompatActivity() {
                 }
                 return false
             }
-
         })
-
-
     }
 private fun searching(search:String){
         searched.clear()

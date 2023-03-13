@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
       private lateinit var airTimeCash:CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         recievedAmount=findViewById(R.id.recievedAmount)
         sentAmount=findViewById(R.id.sentAmount)
@@ -221,11 +222,12 @@ class MainActivity : AppCompatActivity() {
                 allTexts=allData.split("\n")
             }
             if (smesNum.smsData.size==csvSmsNum){
-            recievedAmount.text="Ksh ${summary[2]}"
-            sentAmount.text="Ksh ${summary[0]}"
-            withdrawAmount.text="Ksh ${summary[4]}"
-            paidAmount.text="Ksh ${summary[3]}"
-            airtimeAmount.text="Ksh ${summary[1]}"
+
+            recievedAmount.text="Ksh ${doubleText(summary[2])}"
+            sentAmount.text="Ksh ${doubleText(summary[0])}"
+            withdrawAmount.text="Ksh ${doubleText(summary[4])}"
+            paidAmount.text="Ksh ${doubleText(summary[3])}"
+            airtimeAmount.text="Ksh ${doubleText(summary[1])}"
             balanceChecks.text="${summary[5].replace(".0","")} Times"
             allTexts=getCsv.split("\n")
             }
@@ -333,6 +335,10 @@ lifecycleScope.launch(Dispatchers.Default){
     }
 }
 }
+private fun doubleText(txtStr:String):String{
+    val arrStr=txtStr.split(".")
+    return arrStr[0]+".0"
+}
 private fun shareFile(fileType:Int,action:Int){
     val fileToShare=if(fileType==1) Project.shareCsv else Project.shareExcel
     val actionView=if(action==1) Intent.ACTION_SEND else Intent.ACTION_VIEW
@@ -385,9 +391,14 @@ private fun shareFile(fileType:Int,action:Int){
 
 }
 /*
+Intent sharingIntent = new Intent();
+sharingIntent.setAction(Intent.ACTION_SEND);
+sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse( fileUriString ) ) ;
+sharingIntent.setType("text/csv");
+startActivity(Intent.createChooser(sharingIntent, "share file with"));
+
 
  val where = filesDir.absolutePath
-
     val excelFile = File(filesDir.absolutePath, "${Project.shareExcel}")
     try {
         val fileOut = FileOutputStream(excelFile)
